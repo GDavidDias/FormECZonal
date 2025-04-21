@@ -1,33 +1,14 @@
-import React, { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { setForm, setPage } from '../../redux/configSlice';
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { setPage } from '../../redux/configSlice';
 
-const PageValidate = () => {
+const PageDatosPersonales = () => {
     const dispatch = useDispatch();
-
     const formSG = useSelector((state)=>state.config.form);
 
     const [error, setError] = useState('');
     const [habilita, setHabilita] = useState(false);
 
-    const handleChangeDni = (event) =>{
-        const{name, value}=event.target;
-        dispatch(setForm({
-            ...formSG,
-            [name]:value
-        }));
-
-        const valido = /^[0-9]{7,8}$/.test(value);
-        //console.log('que tiene valido: ', valido);
-
-        if (!valido && value!='') {
-            setError('Ingrese un DNI valido, entre 7 y 8 digitos');
-            setHabilita(false);
-        }else{
-            setError('');
-            setHabilita(true);
-        }
-    };
 
     const handleSubmit = (e) =>{
         e.preventDefault();
@@ -35,12 +16,8 @@ const PageValidate = () => {
         dispatch(setPage('pageDatosPersonales'))
     };
 
-    useEffect(()=>{
-        console.log('que tiene formSG: ', formSG);
-    },[formSG])
-
   return (
-    <div className=''>
+    <div>
         <form onSubmit={handleSubmit}>
             <div className='flex flex-col'>
                 <div>
@@ -50,7 +27,7 @@ const PageValidate = () => {
                         type='number'
                         id='dni'
                         name='dni'
-                        onChange={handleChangeDni}
+                        //onChange={handleChangeDni}
                     ></input>
                     {error && <p className='italic text-red-500'>{error}</p>}
 
@@ -73,4 +50,4 @@ const PageValidate = () => {
   )
 }
 
-export default PageValidate
+export default PageDatosPersonales

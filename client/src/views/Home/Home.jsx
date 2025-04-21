@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import PageValidate from '../../components/PageValidate/PageValidate';
 import PageIni from '../../components/PageIni/PageIni';
 import { setPage } from '../../redux/configSlice';
+import PageDatosPersonales from '../../components/PageDatosPersonales/PageDatosPersonales';
 
 const Home = () => {
 
@@ -19,6 +20,9 @@ const Home = () => {
             break;
         case 'pageIni':
             setContent(<PageIni/>)
+            break;
+        case 'pageDatosPersonales':
+            setContent(<PageDatosPersonales/>)
             break;
       
         default:
